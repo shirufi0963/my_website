@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>庭師自陣 有澤班</title>
+   <style>
+        html, body {
+            height: auto;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: none;
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            margin: auto;
+            color: white;
+            text-align: center;
+        }   
+
+        header {
+            font-size: 32px;
+            padding: 20px;
+            font-weight: bold;
+        }
+        
+        .nav-bar {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            color: aliceblue;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 5px;
+            width: auto;
+            max-width: 300px;
+        }
+
+        .menu li {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .menu a {
+            color: aliceblue;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        .menu.show {
+            display: block;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: unset;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 50px;
+            text-align: center;
+            color: aliceblue;
+            font-size: 32px;
+
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+            z-index: 1;
+        }
+
+        .desktop-hero {
+            background-image: url('top.jpg') !important;
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            position: relative;
+        }
+
+        .desktop-hero .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .mobile-hero  {
+            display: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            .desktop-hero  {
+                display: none;
+            }
+
+            .mobile-hero {
+                display: flex;
+                background-image: url('tate.jpg');
+                background-size: cover;
+                background-position: center;
+            }
+
+            .mobile-hero .content {
+            position: relative;
+            z-index: 2;
+        }
+        }
+
+        .news {
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .news-item {
+            display: flex;
+            align-items: center;
+            background: lonear-gradient(to right, #80a0ff, #40a6ff);
+            padding: 15px;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .news-item img {
+           width: 150px;
+           height: auto;
+           border: 3px solid #333;
+           border-radius: 5px;
+           margin-right: 20px;
+        }
+
+        .news-text {
+            text-align: left;
+        }
+        
+        .news-text h3 {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .news-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        @media screen and (max-width: 600px) {
+            .news-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .news-item img {
+                width: 100%;
+                margin: 0 0 10px 0;
+            }
+            
+            .news-text {
+                text-align: center;
+            }
+        }
+
+        .news.show {
+            opacity: 1;
+            transition: translateY(0);
+        }
+
+        footer {
+            position: relative;
+            color: aliceblue;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- メインビジュアル -->
+    <section class="hero desktop-hero">
+        <div class="content">
+            <h1>有澤班</h1>
+        </div>
+    </section>    
+    
+    <section class="hero mobile-hero">
+        <div class="content">
+             <h1>有澤班</h1>
+        </div>     
+    </section>
+       
+    <nav class="nav-bar">
+        <div class="menu-icon" onclick="toggleMenu()">
+            ☰
+        </div>
+        <ul class="menu">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">NEWS</a></li>
+            <li><a href="#">POROFILE</a></li>
+            <li><a href="#">LIVE</a></li>
+            <li><a href="#">GOODS</a></li>
+        </ul>
+    </nav>
+    
+    <section class="news">
+        <h2>NEWS</h2>
+
+        <a href="news1.html" class="news-item">
+            <img src="news1.jpg" alt="ニュース画像1">
+            <div class="news-text">
+                <h3>初のライブ開催決定！2025年3月1日(土)COアリーナにて開催！</h3>
+                <p>READ MORE</p>
+            </div>
+        </a>
+
+        <a href="news2.html" class="news-item">
+            <img src="news2.jpg" alt="ニュース画像2">
+            <div class="news-text">
+                <h3>1st FULL ALBUM『FICTITIOUS』2025年4月1日(火)発売決定！</h3>
+                <p>READ MORE</p>
+            </div>
+        </a>
+
+        <a href="news3.html" class="news-item">
+            <img src="news3.jpg" alt="ニュース画像3">
+            <div class="news-text">
+                <h3>shirufiさん提供楽曲「creatio」が先行デジタルリリース開始！</h3>
+                <p>READ MORE</p>
+            </div>
+        </a>
+        
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const menu =document.querySelector(".menu");
+            menu.classList.toggle("show")
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+           const newsSection = document.querySelector(".news");
+           window.addEventListener("scroll", function() {
+               let newsTop = newsSection.getBoundingClientRect().top;
+               let windowHeight = window.innerHeight;
+               if (newsTop < windowHeight - 50) {
+                   newsSection.classList.add("show");
+               }
+           });
+        });
+    </script>
+
+    <footer>© 2025 Wdtgs,Arisawa</footer>
+</body>
+</html> 
